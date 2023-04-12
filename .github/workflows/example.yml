@@ -1,0 +1,17 @@
+on: [pull_request]
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    name: Create a database using BentoDB
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create
+        id: create
+        uses: DigitalSVN/bentodb-create-action@main
+        with:
+          api-token: ${{ secrets.BENTODB_API_TOKEN }}
+          database-name: ${{ github.ref }}
+
+      - name: Output the database name
+        run: echo "URL ${{ steps.create.outputs.database_name }}"
