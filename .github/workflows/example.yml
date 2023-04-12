@@ -11,7 +11,7 @@ jobs:
         uses: DigitalSVN/bentodb-create-action@feature-github-action
         with:
           api-token: ${{ secrets.BENTODB_API_TOKEN }}
-          database-name: ${{ github.ref_name }}
+          database-name: "${{ github.repository }}/${{ github.ref_name }}"
 
       - name: Output the database name
         run: echo "URL ${{ steps.create.outputs.database_name }}"
