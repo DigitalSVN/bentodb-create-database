@@ -45,12 +45,12 @@ if [[ "$http_response_code" != "200" && "$http_response_code" != "201" ]]; then
 fi
 
 # Return these values to the action
-echo "::set-output name=database_id::$content_database_id"
-echo "::set-output name=database_name::$content_database_name"
+echo "database_id=$content_database_id" >> $env:GITHUB_OUTPUT
+echo "database_name=$content_database_name" >> $env:GITHUB_OUTPUT
 
-echo "::set-output name=database_host::$content_database_host"
-echo "::set-output name=database_port::$content_database_port"
-echo "::set-output name=database_username::$content_database_username"
-echo "::set-output name=database_password::$content_database_password"
+echo "database_host=$content_database_host" >> $env:GITHUB_OUTPUT
+echo "database_port=$content_database_port" >> $env:GITHUB_OUTPUT
+echo "database_username=$content_database_username" >> $env:GITHUB_OUTPUT
+echo "database_password=$content_database_password" >> $env:GITHUB_OUTPUT
 
 echo $response_content | jq -r
