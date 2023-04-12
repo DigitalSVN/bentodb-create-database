@@ -14,4 +14,4 @@ jobs:
           database-name: "${{ github.repository }}/${{ github.ref_name }}"
 
       - name: Output the database name
-        run: echo "URL ${{ steps.create.outputs.database_name }}"
+        run: echo "Database name - ${{ steps.create.outputs.database_name }}"
