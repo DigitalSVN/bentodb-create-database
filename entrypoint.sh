@@ -40,7 +40,7 @@ content_database_password=$(echo $response_content | jq -r '.data.password')
 rm response.txt
 
 if [[ "$http_response_code" != "200" && "$http_response_code" != "201" ]]; then
-  echo "Code:$http_response_code\nMessage:$content_message\nError:$content_error"
+  printf "Code:$http_response_code\nMessage:$content_message\nError:$content_error"
   exit 1
 fi
 
@@ -54,4 +54,4 @@ echo "database_username=$content_database_username" >> $GITHUB_OUTPUT
 echo "database_password=$content_database_password" >> $GITHUB_OUTPUT
 
 # Output the message
-echo "Code:$http_response_code\nMessage:$content_message\nError:$content_error"
+printf "Code:$http_response_code\nMessage:$content_message\nError:$content_error"
