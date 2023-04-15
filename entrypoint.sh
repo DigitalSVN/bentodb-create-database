@@ -53,4 +53,5 @@ echo "database_port=$content_database_port" >> $GITHUB_OUTPUT
 echo "database_username=$content_database_username" >> $GITHUB_OUTPUT
 echo "database_password=$content_database_password" >> $GITHUB_OUTPUT
 
-echo $response_content | jq -r
+# Output the message
+echo "Code:$http_response_code\nMessage:$content_message\nError:$content_error"
