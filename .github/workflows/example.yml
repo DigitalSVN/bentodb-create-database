@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Create
         id: create
-        uses: DigitalSVN/bentodb-create-action@feature-github-action
+        uses: DigitalSVN/bentodb-create-database@feature-github-action
         with:
           api-token: ${{ secrets.BENTODB_API_TOKEN }}
           database-name: "${{ github.repository }}/${{ github.head_ref }}"

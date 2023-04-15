@@ -1,5 +1,5 @@
 name: 'BentoDB Create Database'
-description: 'Create a new database instantly'
+description: 'Create a database for use in your GitHub action instantly'
 branding:
   icon: 'arrow-up-circle'
   color: 'green'
