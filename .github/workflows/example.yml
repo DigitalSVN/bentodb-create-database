@@ -20,3 +20,10 @@ jobs:
 
       - name: Output the database name
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
+        
+      - name: Delete
+        id: delete
+        uses: DigitalSVN/bentodb-delete-database@main
+        with:
+          api-token: ${{ secrets.BENTODB_API_TOKEN }}
+          database-id: ${{ steps.create.outputs.database_id }}
