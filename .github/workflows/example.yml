@@ -24,11 +24,13 @@ jobs:
       - name: Connect to MySQL database
         run: |
           mysql \
-          --host=${{ steps.create.outputs.database_host }} \
-          --port=${{ steps.create.outputs.database_port }} \
           --user=${{ steps.create.outputs.database_username }} \
           --password=${{ steps.create.outputs.database_password }} \
           ${{ steps.create.outputs.database_name }} -e "SELECT 'Hello MySQL Server';"
+        env:
+          MYSQL_HOST: ${{ steps.create.outputs.database_host }}
+          MYSQL_TCP_PORT: ${{ steps.create.outputs.database_port }}
+
         
       - name: Delete
         id: delete
