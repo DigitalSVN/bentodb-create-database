@@ -27,11 +27,11 @@ jobs:
           --user=${{ steps.create.outputs.database_username }} \
           --password=${{ steps.create.outputs.database_password }} \
           --ssl-mode=required \
-          ${{ steps.create.outputs.database_name }} \
-          -e "CREATE TABLE `books` (`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT, `title` varchar(255), `author` varchar(255), PRIMARY KEY (`id`));" \
-          -e "DESCRIBE `books`;" \
-          -e "INSERT INTO books (`title`, `author`) VALUES ('The Da Vinci Code', 'Dan Brown'), ('Harry Potter and the Chamber of Secrets', 'J. K. Rowling');" \
-          -e "SELECT * FROM `books` ORDER BY title ASC;"
+          ${{ steps.create.outputs.database_name }} -e " \
+          CREATE TABLE `books` (`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT, `title` varchar(255), `author` varchar(255), PRIMARY KEY (`id`)); \
+          DESCRIBE `books`; \
+          INSERT INTO books (`title`, `author`) VALUES ('The Da Vinci Code', 'Dan Brown'), ('Harry Potter and the Chamber of Secrets', 'J. K. Rowling'); \
+          SELECT * FROM `books` ORDER BY title ASC;"
         env:
           MYSQL_HOST: ${{ steps.create.outputs.database_host }}
           MYSQL_TCP_PORT: ${{ steps.create.outputs.database_port }}
