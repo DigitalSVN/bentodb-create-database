@@ -26,6 +26,7 @@ jobs:
           mysql \
           --user=${{ steps.create.outputs.database_username }} \
           --password=${{ steps.create.outputs.database_password }} \
+          --ssl-mode=required \
           ${{ steps.create.outputs.database_name }} -e "SELECT 'Hello MySQL Server';"
         env:
           MYSQL_HOST: ${{ steps.create.outputs.database_host }}
