@@ -23,11 +23,11 @@ jobs:
 
       - name: Connect to MySQL database
         run: mysql \
---host=${{ steps.create.outputs.database_host }} \
---port=${{ steps.create.outputs.database_port }} \
---user=${{ steps.create.outputs.database_username }} \
---password=${{ steps.create.outputs.database_password }} \
-${{ steps.create.outputs.database_name }} -e "SELECT 'Hello MySQL Server';"
+          --host=${{ steps.create.outputs.database_host }} \
+          --port=${{ steps.create.outputs.database_port }} \
+          --user=${{ steps.create.outputs.database_username }} \
+          --password=${{ steps.create.outputs.database_password }} \
+          ${{ steps.create.outputs.database_name }} -e "SELECT 'Hello MySQL Server';"
         
       - name: Delete
         id: delete
