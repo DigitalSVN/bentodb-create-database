@@ -22,7 +22,8 @@ jobs:
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
 
       - name: Connect to MySQL database
-        run: mysql \
+        run: |
+          mysql \
           --host=${{ steps.create.outputs.database_host }} \
           --port=${{ steps.create.outputs.database_port }} \
           --user=${{ steps.create.outputs.database_username }} \
