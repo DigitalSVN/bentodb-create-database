@@ -11,7 +11,7 @@ jobs:
     name: Create and then delete a database using BentoDB
     steps:
       - uses: actions/checkout@v3
-      - name: Create
+      - name: Create BentoDB database
         id: create
         uses: DigitalSVN/bentodb-create-database@main
         with:
@@ -27,13 +27,17 @@ jobs:
           --user=${{ steps.create.outputs.database_username }} \
           --password=${{ steps.create.outputs.database_password }} \
           --ssl-mode=required \
-          ${{ steps.create.outputs.database_name }} -e "SELECT 'Hello MySQL Server';"
+          ${{ steps.create.outputs.database_name }} \
+          -e "CREATE TABLE `books` (`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT, `title` varchar(255), `author` varchar(255), PRIMARY KEY (`id`));" \
+          -e "DESCRIBE `books`;" \
+          -e "INSERT INTO books (`title`, `author`) VALUES ('The Da Vinci Code', 'Dan Brown'), ('Harry Potter and the Chamber of Secrets', 'J. K. Rowling');" \
+          -e "SELECT * FROM `books` ORDER BY title ASC;"
         env:
           MYSQL_HOST: ${{ steps.create.outputs.database_host }}
           MYSQL_TCP_PORT: ${{ steps.create.outputs.database_port }}
 
         
-      - name: Delete
+      - name: Delete BentoDB database
         id: delete
         uses: DigitalSVN/bentodb-delete-database@main
         with:
