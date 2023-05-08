@@ -52,7 +52,6 @@ echo "database_port=$content_database_port" >> $GITHUB_OUTPUT
 echo "database_name=$content_database_name" >> $GITHUB_OUTPUT
 
 echo "database_username=$content_database_username" >> $GITHUB_OUTPUT
-echo "::add-mask::$content_database_password"
 echo "database_password=$content_database_password" >> $GITHUB_OUTPUT
 
 # Output the message
