@@ -26,7 +26,7 @@ jobs:
 
       - name: Run MySQL test script
         run: |
-          # php ./.github/workflows/test.php
+          php ./.github/workflows/test.php
         env:
           DB_HOST: ${{ steps.create.outputs.database_host }}
           DB_PORT: ${{ steps.create.outputs.database_port }}
