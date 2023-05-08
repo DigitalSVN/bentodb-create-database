@@ -23,8 +23,10 @@ jobs:
 
       - name: Run MySQL test script
         run: |
-          echo "DB_USERNAME=${{ steps.create.outputs.database_username }}" >> $GITHUB_OUTPUT
-          echo "DB_PASSWORD=${{ steps.create.outputs.database_password }}" >> $GITHUB_OUTPUT
+          echo "::add-mask::$DB_USERNAME"
+          echo "DB_USERNAME=${{ steps.create.outputs.database_username }}" >> $GITHUB_ENV
+          echo "::add-mask::$DB_PASSWORD"
+          echo "DB_PASSWORD=${{ steps.create.outputs.database_password }}" >> $GITHUB_ENV
           php ./.github/workflows/test.php
         env:
           DB_HOST: ${{ steps.create.outputs.database_host }}
