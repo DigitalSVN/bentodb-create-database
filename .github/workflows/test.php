@@ -17,7 +17,7 @@ $options = [
     PDO::MYSQL_ATTR_SSL_CA => true,
     PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
 ];
-$pdo = new PDO($dsn, $db_user, $db_pass, $options);
+$pdo = new PDO($dsn, $db_username, $db_password, $options);
 
 /**
  * Create table
