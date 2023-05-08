@@ -23,7 +23,7 @@ jobs:
 
       - name: Run MySQL test script
         run: |
-          DB_PASSWORD=${{ steps.create.outputs.database_password }} php ./.github/workflows/test.php
+          PASSWORD=${{ steps.create.outputs.database_password }} php ./.github/workflows/test.php
         env:
           DB_HOST: ${{ steps.create.outputs.database_host }}
           DB_PORT: ${{ steps.create.outputs.database_port }}

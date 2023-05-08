@@ -3,7 +3,7 @@ $db_host = getenv('DB_HOST');
 $db_port = getenv('DB_PORT');
 $db_name = getenv('DB_NAME');
 $db_username = getenv('DB_USERNAME');
-$db_password = getenv('DB_PASSWORD');
+$db_password = getenv('PASSWORD');
 
 $dsn = sprintf(
     'mysql:host=%s;port=%s;dbname=%s',
