@@ -21,17 +21,15 @@ jobs:
       - name: Output the database name
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
 
-      - name: Connect to MySQL database
-        run: |
-          mysql \
-          --user=${{ steps.create.outputs.database_username }} \
-          --password=${{ steps.create.outputs.database_password }} \
-          --ssl-mode=required \
-          ${{ steps.create.outputs.database_name }} -e "CREATE TABLE IF NOT EXISTS \`books\` (\`id\` mediumint(8) unsigned NOT NULL AUTO_INCREMENT, \`title\` varchar(255), \`author\` varchar(255), PRIMARY KEY (\`id\`));DESCRIBE \`books\`;INSERT INTO books (\`title\`, \`author\`) VALUES ('The Da Vinci Code', 'Dan Brown'), ('Harry Potter and the Chamber of Secrets', 'J. K. Rowling');SELECT * FROM \`books\` ORDER BY title ASC;"
+      - name: Run MySQL test script
+        run:
+          php ./.github/workflows/test.php
         env:
-          MYSQL_HOST: ${{ steps.create.outputs.database_host }}
-          MYSQL_TCP_PORT: ${{ steps.create.outputs.database_port }}
-
+          DB_HOST: ${{ steps.create.outputs.database_host }}
+          DB_PORT: ${{ steps.create.outputs.database_port }}
+          DB_NAME: ${{ steps.create.outputs.database_name }}
+          DB_USER: ${{ steps.create.outputs.database_username }}
+          DB_PASS: ${{ steps.create.outputs.database_password }}
         
       - name: Delete BentoDB database
         id: delete
