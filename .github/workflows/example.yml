@@ -21,9 +21,6 @@ jobs:
       - name: Output the database name
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
 
-      - name: Add mask
-        run: echo "::add-mask::${{ steps.create.outputs.database_password }}" >> $GITHUB_ENV
-
       - name: Run MySQL test script
         run: |
           php ./.github/workflows/test.php
