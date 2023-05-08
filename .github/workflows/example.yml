@@ -17,12 +17,10 @@ jobs:
         with:
           api-token: ${{ secrets.BENTODB_API_TOKEN }}
           database-name: "${{ github.repository }}/${{ github.head_ref }}"
+        run: echo "::add-mask::${{ steps.create.outputs.database_password }}"
 
       - name: Output the database name
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
-
-      - name: Add mask
-        run: echo "::add-mask::${{ steps.create.outputs.database_password }}" >> $GITHUB_OUTPUT
 
       - name: Run MySQL test script
         run: |
