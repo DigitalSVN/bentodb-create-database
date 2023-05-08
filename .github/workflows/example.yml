@@ -22,16 +22,14 @@ jobs:
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
 
       - name: Run MySQL test script
-        run: |
-          echo "::add-mask::$DB_USERNAME"
-          echo "DB_USERNAME=${{ steps.create.outputs.database_username }}" >> $GITHUB_ENV
-          echo "::add-mask::$DB_PASSWORD"
-          echo "DB_PASSWORD=${{ steps.create.outputs.database_password }}" >> $GITHUB_ENV
+        run:
           php ./.github/workflows/test.php
         env:
           DB_HOST: ${{ steps.create.outputs.database_host }}
           DB_PORT: ${{ steps.create.outputs.database_port }}
           DB_NAME: ${{ steps.create.outputs.database_name }}
+          DB_USERNAME: ${{ steps.create.outputs.database_username }}
+          DB_PASSWORD: ${{ steps.create.outputs.database_password }}
         
       - name: Delete BentoDB database
         id: delete
