@@ -14,10 +14,10 @@ jobs:
       - name: Create BentoDB database
         id: create
         uses: DigitalSVN/bentodb-create-database@main
+        run: echo "::add-mask::${{ steps.create.outputs.database_password }}"
         with:
           api-token: ${{ secrets.BENTODB_API_TOKEN }}
           database-name: "${{ github.repository }}/${{ github.head_ref }}"
-        run: echo "::add-mask::${{ steps.create.outputs.database_password }}"
 
       - name: Output the database name
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
