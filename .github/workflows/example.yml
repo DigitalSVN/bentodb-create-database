@@ -23,6 +23,7 @@ jobs:
 
       - name: Run MySQL test script
         run:
+          echo "::add-mask::$DB_PASSWORD"
           php ./.github/workflows/test.php
         env:
           DB_HOST: ${{ steps.create.outputs.database_host }}
