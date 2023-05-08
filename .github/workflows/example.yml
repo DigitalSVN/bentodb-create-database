@@ -21,6 +21,9 @@ jobs:
       - name: Output the database name
         run: echo "Database name - ${{ steps.create.outputs.database_name }}, ID - ${{ steps.create.outputs.database_id }}"
 
+      - name: Output the database password
+        run: echo "Database password - ${{ steps.create.outputs.database_password }}"
+
       - name: Run MySQL test script
         run: |
           echo "::add-mask::$DB_PASSWORD"
