@@ -30,6 +30,7 @@ $create_statement = 'CREATE TABLE IF NOT EXISTS `books` (
     PRIMARY KEY (`id`)
 );';
 $create_result = $pdo->exec($create_statement);
+$output .= $create_statement . "\n";
 $output .= "Table created.\n";
 
 /**
@@ -37,6 +38,7 @@ $output .= "Table created.\n";
  */
 $describe_statement = 'DESCRIBE `books`;';
 $describe_result = $pdo->query($describe_statement);
+$output .= $describe_statement . "\n";
 $output .= arrayToTextTable($describe_result->fetchAll(PDO::FETCH_ASSOC));
 
 /**
@@ -47,6 +49,7 @@ $insert_statement = "INSERT INTO `books` (`title`, `author`) VALUES
       ('The Da Vinci Code', 'Dan Brown'),
       ('Harry Potter and the Chamber of Secrets', 'J. K. Rowling');";
 $pdo->exec($insert_statement);
+$output .= $insert_statement . "\n";
 $output .= "Data inserted.\n";
 
 /**
@@ -54,6 +57,7 @@ $output .= "Data inserted.\n";
  */
 $select_statement = "SELECT * FROM `books` ORDER BY title ASC;";
 $select_result = $pdo->query($select_statement);
+$output .= $select_statement . "\n";
 $output .= arrayToTextTable($select_result->fetchAll(PDO::FETCH_ASSOC));
 
 echo $output;
