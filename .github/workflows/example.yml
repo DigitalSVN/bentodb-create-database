@@ -29,7 +29,7 @@ jobs:
           DB_PORT: ${{ steps.create.outputs.database_port }}
           DB_NAME: ${{ steps.create.outputs.database_name }}
           DB_USERNAME: ${{ steps.create.outputs.database_username }}
-          PASSWORD: ${{ steps.create.outputs.database_password }}
+          DB_PASSWORD: ${{ steps.create.outputs.database_password }}
         
       - name: Delete BentoDB database
         id: delete

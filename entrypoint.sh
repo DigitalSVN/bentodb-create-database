@@ -53,7 +53,10 @@ echo "database_name=$content_database_name" >> $GITHUB_OUTPUT
 
 echo "database_username=$content_database_username" >> $GITHUB_OUTPUT
 echo "database_password=$content_database_password" >> $GITHUB_OUTPUT
+
+# Mask the username and password as they are likely to be used in subsequent steps
+echo "::add-mask::$content_database_username"
 echo "::add-mask::$content_database_password"
 
 # Output the message
-printf "Code:$http_response_code\nMessage:$content_message\nError:$content_error\nPassword:$content_database_password"
+printf "Code:$http_response_code\nMessage:$content_message\nError:$content_error"
